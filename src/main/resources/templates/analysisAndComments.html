@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>问题答案解析讨论</title>
+</head>
+
+<body>
+<!--<div class="showing">-->
+<!--<div th:replace="include::includeHead"></div>-->
+<!--</div>-->
+<!--<form action="list" method="post">-->
+<!--<br/>-->
+<!--序号：<input type="text" name="name" style="width: 120px;"/>-->
+<!--问题：<input type="text" name="telephone" style="width: 120px;"/>-->
+<!--<input type="submit" value="搜索" style="background-color: #173e65;color: #ffffff; width: 70px;"/><br/>-->
+<!--</form>-->
+<div th:text="${analysis}"></div><br>
+<table border="1">
+    <tr th:each="r:${comments}">
+        <td >
+            <div>
+                <div th:text="${r.content}"></div>
+                <!--<div th:text="${r.getReplyTime()}"></div>-->
+                <br>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<!--<div style="margin-top:10px">-->
+<!--<a th:href="@{/listQuestions(start=0)}">[首 页]</a>-->
+<!--<a th:href="@{/listQuestions(start=${page.pageNum-1})}">[上一页]</a>-->
+<!--<a th:href="@{/listQuestions(start=${page.pageNum+1})}">[下一页]</a>-->
+<!--<a th:href="@{/listQuestions(start=${page.pages})}">[末 页]</a>-->
+<!--</div>-->
+</body>
+
+</html>

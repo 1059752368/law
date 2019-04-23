@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>随机问题练习</title>
+</head>
+<body>
+<form action="/question/submitAnswers" method="POST">
+    <table border="1">
+        <tr th:each="i:${#numbers.sequence(0,9)}">
+            <td >
+                <div th:text="${i+1}+${questionAndAnswer[i].content}"></div>
+                <div>
+                    <input  type="checkbox"  checked = true  style="display: none " th:name="'answer'+${i}"  th:value="${questionAndAnswer[i].id}"/>
+                    <input  type="checkbox"  th:name="'answer'+${i}"  th:value="${1}"/>
+                    <span th:text="${questionAndAnswer[i].getAnswers().getAnswer1()}"></span><br/>
+                    <input  type="checkbox"  th:name="'answer'+${i}"  th:value="${2}"/>
+                    <span th:text="${questionAndAnswer[i].getAnswers().getAnswer2()}"></span><br/>
+                    <input  type="checkbox"  th:name="'answer'+${i}"  th:value="${3}"/>
+                    <span th:text="${questionAndAnswer[i].getAnswers().getAnswer3()}"></span><br/>
+                    <input  type="checkbox"  th:name="'answer'+${i}"  th:value="${4}"/>
+                    <span th:text="${questionAndAnswer[i].getAnswers().getAnswer4()}"></span><br/>
+
+                </div>
+            </td>
+        </tr>
+    </table>
+    <button type="submit">提交答案</button>
+</form>
+</body>
+</html>

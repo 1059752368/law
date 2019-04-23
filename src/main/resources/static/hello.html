@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>登录</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!-- 这是引入的背景图片 -->
+<embed src="/common/bodydiv.html" class="bodydiv"></embed>
+
+<!-- 这是登录组件 -->
+<div class="whitediv">
+    <div class="form-login">
+        <div class="trademark">
+            <span>此处添加商标及宣传语</span>
+        </div>
+        <hr class="hr-split" />
+        <!-- 登录输入框组 -->
+        <div class="input-login">
+            <div class="form-group">
+                <input id="user-value" placeholder="账号" />
+                <p class="tip-failed">
+                    <span>!</span>
+                    <span> 登录失败,请填写正确的账号和密码</span>
+                </p>
+            </div>
+            <div class="form-group">
+                <input id="password-value" type="password" placeholder="密码" />
+                <span class="password-toggle iconfont icon-eye"></span>
+            </div>
+        </div>
+        <div class="help-block">
+            <a href="register" class="link">没有账号? 去注册&gt;</a>
+        </div>
+        <!-- 登录按钮 -->
+        <div class="submit" id="lSubmit">登录</div>
+
+        <div class="checkbox">
+            <label><input type="checkbox" name="remember"/> 记住我 </label>
+            <a href="repassword" class="link">忘记密码</a>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
