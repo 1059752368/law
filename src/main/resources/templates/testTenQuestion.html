@@ -1,31 +1,207 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>随机问题练习</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn is a modern and fully responsive Template by WebThemez.">
+    <meta name="author" content="">
+    <title>Learn</title>
+    <link rel="favicon" href="../images/favicon.png">
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <!-- Custom styles for our template -->
+    <link rel="stylesheet" href="../css/bootstrap-theme.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../css/da-slider.css" />
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../js/html5shiv.js"></script>
+    <script src="../js/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-<form action="/question/submitAnswers" method="POST">
-    <table border="1">
-        <tr th:each="i:${#numbers.sequence(0,9)}">
-            <td >
-                <div th:text="${i+1}+${questionAndAnswer[i].content}"></div>
-                <div>
-                    <input  type="checkbox"  checked = true  style="display: none " th:name="'answer'+${i}"  th:value="${questionAndAnswer[i].id}"/>
-                    <input  type="checkbox"  th:name="'answer'+${i}"  th:value="${1}"/>
-                    <span th:text="${questionAndAnswer[i].getAnswers().getAnswer1()}"></span><br/>
-                    <input  type="checkbox"  th:name="'answer'+${i}"  th:value="${2}"/>
-                    <span th:text="${questionAndAnswer[i].getAnswers().getAnswer2()}"></span><br/>
-                    <input  type="checkbox"  th:name="'answer'+${i}"  th:value="${3}"/>
-                    <span th:text="${questionAndAnswer[i].getAnswers().getAnswer3()}"></span><br/>
-                    <input  type="checkbox"  th:name="'answer'+${i}"  th:value="${4}"/>
-                    <span th:text="${questionAndAnswer[i].getAnswers().getAnswer4()}"></span><br/>
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Button for smallest screens -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            <a class="navbar-brand" href="index.html">
+                <img src="../images/logo.png" alt="Techro HTML5 template"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav pull-right mainNav">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li class="active"><a href="../courses.html">Courses</a></li>
+                <li><a href="../expertAdvice.html">Expert Advice</a></li>
+                <li><a href="../portfolio.html">Portfolio</a></li>
+                <li class="dropdown" style="z-index: 9999">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+                    <ul class="dropdown-menu" >
+                        <li><a href="sidebar-right.html">Right Sidebar</a></li>
+                        <li><a href="/user/setPhoto">修改头像</a></li>
+                        <li><a href="/user/expertCertification">专家认证</a></li>
+                        <li><a href="#">Dummy Link3</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
 
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+<!-- /.navbar -->
+
+<!-- Header -->
+<header id="head">
+    <div class="container">
+        <div class="banner-content">
+            <div id="da-slider" class="da-slider">
+                <div class="da-slide">
+                    <h2>Educational Website</h2>
+                    <p>Amazing free responsive website for free, enjoy!!!</p>
+                    <div class="da-img"></div>
                 </div>
-            </td>
-        </tr>
-    </table>
-    <button type="submit">提交答案</button>
-</form>
+                <div class="da-slide">
+                    <h2>Online Education</h2>
+                    <p>Bootstrap is a powerful mobile first front-end framework..</p>
+                    <div class="da-img"></div>
+                </div>
+                <div class="da-slide">
+                    <h2>Super Success</h2>
+                    <p>HTML5 is a markup language used for structuring and presenting Web.</p>
+                    <div class="da-img"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- /Header -->
+
+<section class="container">
+    <div class="heading">
+        <!-- Heading -->
+        <h2>About the system</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="../images/spotlight.jpg" alt="" class="img-responsive">
+        </div>
+        <div class="col-md-8">
+            <p>本系统主要收集整理了民法知识的题目，提供给想学习、想了解民法知识的朋友们学习中国民法知识。也可以帮助那些需要民法帮助的朋友们或多或少得到自己需要的一些信息。</p>
+            <blockquote class="blockquote-1">
+                <p>锲而舍之，朽木不折；锲而不舍，金石可镂</p>
+                <small>荀子<cite title="Source Title">《荀子·劝学篇》</cite></small>
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-4"><div class="title-box clearfix "><h2 class="title-box_primary">Our Students</h2></div>
+            <p><span>Perspiciatis unde omnis iste natus error sit voluptatem. Cum sociis natoque penatibus et magnis dis parturient montes ascetur ridiculus musull dui.</span></p>
+            <p>Lorem ipsumulum aenean noummy endrerit mauris. Cum sociis natoque penatibus et magnis dis parturient montes ascetur ridiculus mus. Null dui. Fusce feugiat malesuada odio.</p>
+            <a href="#" title="read more" class="btn-inline " target="_self">read more</a> </div>
+
+        <div class="col-md-4"><div class="title-box clearfix "><h2 class="title-box_primary">Courses</h2></div>
+            <div class="list styled custom-list">
+                <ul>
+                    <li><a title="Snatoque penatibus et magnis dis partu rient montes ascetur ridiculus mus." href="http://localhost:8080/question/randomTenQue">随机10道题目练习</a></li>
+                    <li><a title="Fusce feugiat malesuada odio. Morbi nunc odio gravida at cursus nec luctus." href="http://localhost:8080/question/listAllQuestionAndComment">所有问题列表</a></li>
+                    <li><a title="Penatibus et magnis dis parturient montes ascetur ridiculus mus." href="#">题目讨论区</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4"><div class="title-box clearfix "><h2 class="title-box_primary">Locations</h2></div>
+            <figure class="frame thumbnail alignnone clearfix">
+                <p><img class="size-full " alt="usa" src="../images/ny.png" width="" height="197"></p>
+            </figure></div>
+
+    </div>
+</section>
+
+
+
+<section class="news-box">
+    <form action="/question/submitAnswers" method="POST">
+        <table border="1">
+            <tr th:each="i:${#numbers.sequence(0,9)}">
+                <td >
+                    <div th:text="${i+1}+${questionAndAnswer[i].content}"></div>
+                    <div>
+                        <input  type="checkbox"  checked = true  style="display: none " th:name="'answer'+${i}"  th:value="${questionAndAnswer[i].id}"/>
+                        <input  type="checkbox"  th:name="'answer'+${i}"  th:value="${1}"/>
+                        <span th:text="${questionAndAnswer[i].getAnswers().getAnswer1()}"></span><br/>
+                        <input  type="checkbox"  th:name="'answer'+${i}"  th:value="${2}"/>
+                        <span th:text="${questionAndAnswer[i].getAnswers().getAnswer2()}"></span><br/>
+                        <input  type="checkbox"  th:name="'answer'+${i}"  th:value="${3}"/>
+                        <span th:text="${questionAndAnswer[i].getAnswers().getAnswer3()}"></span><br/>
+                        <input  type="checkbox"  th:name="'answer'+${i}"  th:value="${4}"/>
+                        <span th:text="${questionAndAnswer[i].getAnswers().getAnswer4()}"></span><br/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <button type="submit">提交答案</button>
+    </form>
+</section>
+
+<footer id="footer">
+    <div class="container">
+        <div class="social text-center">
+            <!--<a href="#"><i class="fa fa-twitter"></i></a>-->
+            <!--<a href="#"><i class="fa fa-facebook"></i></a>-->
+            <!--<a href="#"><i class="fa fa-dribbble"></i></a>-->
+            <!--<a href="#"><i class="fa fa-flickr"></i></a>-->
+            <a href="https://github.com/1059752368/law"><i class="fa fa-github"></i></a>
+        </div>
+
+        <div class="clear"></div>
+        <!--CLEAR FLOATS-->
+    </div>
+    <div class="footer2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 panel">
+                    <div class="panel-body">
+                        <p class="simplenav">
+                            <a href="../index.html">Home</a> |
+                            <a href="../about.html">About</a> |
+                            <a href="../courses.html">Courses</a> |
+                            <a href="../expertAdvice.html">Fees</a> |
+                            <a href="../portfolio.html">Portfolio</a> |
+                            <a href="../contact.html">Contact</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 panel">
+                    <div class="panel-body">
+                        <p class="text-right">
+                            Copyright &copy; 2019.Gonghongtao All rights reserved
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /row of panels -->
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="../js/modernizr-latest.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+<!--<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.cslider.js"></script>
+<script src="../js/custom.js"></script>
 </body>
 </html>

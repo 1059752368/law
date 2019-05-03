@@ -1,30 +1,32 @@
 package com.biyesheji.law.service.impl;
 
 import com.biyesheji.law.pojo.Answers;
+import com.biyesheji.law.pojo.Comment;
 import com.biyesheji.law.pojo.Question;
 import com.biyesheji.law.repository.AnswersRepository;
+import com.biyesheji.law.repository.CommentRepository;
 import com.biyesheji.law.repository.QuestionRepository;
+import com.biyesheji.law.repository.UserRepository;
 import com.biyesheji.law.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
-
+    private final CommentRepository commentRepository;
     private final AnswersRepository answersRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public QuestionServiceImpl(QuestionRepository questionRepository, AnswersRepository answersRepository) {
+    public QuestionServiceImpl(QuestionRepository questionRepository, CommentRepository commentRepository, AnswersRepository answersRepository, UserRepository userRepository) {
         this.questionRepository = questionRepository;
+        this.commentRepository = commentRepository;
         this.answersRepository = answersRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class QuestionServiceImpl implements QuestionService {
         if (question == null) {
             return null;
         }
-        Answers answers = answersRepository.findById(question.getId()).orElse(null);
+        Answers answers = answersRepository.findById(question.getAnswersId()).orElse(null);
         question.setAnswers(answers);
         return question;
     }
@@ -57,19 +59,33 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<Question> getAll() {
         List<Question> list = questionRepository.findAll();
-//        List<Answers> answersList = ;
-//        List<Integer> collect = list.stream()
-//                .map(Question::getAnswersId)
-//                .collect(Collectors.toList());
-//        collect.stream()
-//                .collect(e -> {
-//                   return  answersRepository.findById(e);
-//                })
         for (Question question : list){
             Answers answers = answersRepository.findById(question.getAnswersId()).orElse(null);
             question.setAnswers(answers);
         }
         return list;
+    }
+
+    @Override
+    public List<Question> getAllQuestionAndComment() {
+        List<Question> questionList = questionRepository.findAll();
+        for (Question question:questionList
+             ) {
+            List<Comment> comments = commentRepository.findCommentByQuestionId(question.getId());
+            for (Comment comment:
+                 comments) {
+                comment.setUser(userRepository.findById(comment.getUserId()).orElse(null));
+            }
+            question.setCommentList(commentRepository.findCommentByQuestionId(question.getId()));
+            question.setAnswers(answersRepository.findById(question.getAnswersId()).orElse(null));
+        }
+        return  questionList;
+    }
+
+    @Override
+    public Answers getAnswerByAnswerId(int answerId) {
+        Answers answers = answersRepository.findById(answerId).orElse(null);
+        return answers;
     }
 
     @Override

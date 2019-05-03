@@ -48,7 +48,7 @@
                 <li class="active"><a href="../courses.html">Courses</a></li>
                 <li><a href="../expertAdvice.html">Expert Advice</a></li>
                 <li><a href="../portfolio.html">Portfolio</a></li>
-                <li class="dropdown">
+                <li class="dropdown" style="z-index: 9999">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="../sidebar-right.html">Right Sidebar</a></li>
@@ -110,38 +110,40 @@
         </div>
     </div>
 </section>
-<!--<div class="comment">-->
-    <!--&lt;!&ndash;<div class="comment-head-photo" th:style="'background:url(+'${question.id}+')'"></div>&ndash;&gt;-->
-    <!--&lt;!&ndash;<div class="comment-head-photo" th:style="'background:url(' + @{${comment.user.phtoto_Id}}+')'; background-size: cover;"></div>&ndash;&gt;-->
-    <!--<div class="comment-head-photo" th:style="'background:url(' + ${comment.user.getPhotoId()}+'); background-size: cover;'"></div>-->
-    <!--<div class="comment-userName" th:text="${comment.getUserId()}" ></div>-->
-    <!--<div class="answer-brief nc-post-content" th:text="${comment.content}" ></div>-->
-    <!--<div class="comment-replyTime" th:text="${comment.getReplyTime()}" ></div>-->
-<!--</div>-->
-<!--<div class="comment-line"></div>-->
-<!--<div><a th:href="@{'../comment/addComment?questionId='+${question.id}}" style="color: #843534">点击参与讨论</a> </div>-->
 
 <section class="container"   id="table" >
-    <h2><span>题目正确情况</span></h2>
-    <br>
-    <div class="list">
-        <div class="correct-order" th:each="map:${answerList}"  th:style="'background-color:' + @{(${map.get('judgeAnswer')} ? 'green' : 'red')}">
-            <a th:href="@{'../comment/addComment?questionId='+${map.get('questionID')}}" th:text="${map.get('currentNumber')}"></a>
+        <div class="panel-heading" th:text="${question.content}"></div>
+        <div class="panel-body">
+            <input  type="checkbox"  checked = true  style="display: none "  th:name="${question.id}"   th:value="${question.id}"/>
+            <div class="result-answer-item" th:text="'A.'+${question.answers.answer1}"></div><br/>
+            <div class="result-answer-item" th:text="'B.'+${question.answers.answer2}"></div><br/>
+            <div class="result-answer-item" th:text="'C.'+${question.answers.answer3}"></div><br/>
+            <div class="result-answer-item" th:text="'D.'+${question.answers.answer4}"></div><br/>
+            <div class="analysis" th:text="${question.analysis}"></div>
+            <div class="module-body clearfix">
+                <div class=" answer-list-item clearfix js-copy-mark" th:each="comment:${question.getCommentList()}"  th:if="${question.getCommentList().size()>0}">
+                    <div class="comment">
+                        <!--<div class="comment-head-photo" th:style="'background:url(+'${question.id}+')'"></div>-->
+                        <!--<div class="comment-head-photo" th:style="'background:url(' + @{${comment.user.phtoto_Id}}+')'; background-size: cover;"></div>-->
+                        <div class="comment-head-photo" th:style="'background:url(' + ${comment.user.getPhotoId()}+'); background-size: cover;'"></div>
+                        <div class="comment-userName" th:text="${comment.getUser().getLoginName()}" ></div>
+                        <div class="answer-brief nc-post-content" th:text="${comment.content}" ></div>
+                        <div class="comment-replyTime" th:text="${comment.getReplyTime()}" ></div>
+                    </div>
+                    <div class="comment-line"></div>
+                </div>
+                <div  th:if="${question.getCommentList().size()==0}">此问题暂无评论, </div>
+            </div>
+            <form action="/comment/commentQuestion" method="POST">
+                <table border="1">
+                    <input  type="checkbox"  th:name="questionId" checked = true style="display: none " th:value="${question.id}"/>
+                    <textarea th:class="input-textarea" th:name="comment" th:height="50px" th:width="250px" th:value="在此输入评论"></textarea>
+                </table>
+                <button type="submit">提交评论</button>
+            </form>
         </div>
-    </div>
+    <br/>
 </section>
-    <!--<div><span th:text="${map0.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map0.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map1.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map1.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map2.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map2.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map3.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map3.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map4.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map4.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map5.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map5.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map6.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map6.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map7.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map7.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map8.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map8.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map9.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map9.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-
-
 
 
 
@@ -306,8 +308,8 @@
 <!--<!DOCTYPE html>-->
 <!--<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">-->
 <!--<head>-->
-<!--<meta charset="UTF-8">-->
-<!--<title>问题答案解析讨论</title>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>问题答案解析讨论</title>-->
 <!--</head>-->
 <!--<body>-->
 <!--<div th:text="${question.content}"></div><br>-->
@@ -316,42 +318,24 @@
 <!--<div th:text="${question.answers.getAnswer3()}"></div><br>-->
 <!--<div th:text="${question.answers.getAnswer4()}"></div><br>-->
 <!--<table border="1">-->
-<!--<tr th:each="r:${commentList}">-->
-<!--<td >-->
-<!--<div>-->
-<!--<div th:text="${r.content}"></div>-->
-<!--&lt;!&ndash;<div th:text="${r.getReplyTime()}"></div>&ndash;&gt;-->
-<!--<br>-->
-<!--</div>-->
-<!--</td>-->
-<!--</tr>-->
+    <!--<tr th:each="r:${commentList}">-->
+        <!--<td >-->
+            <!--<div>-->
+                <!--<div th:text="${r.content}"></div>-->
+                <!--&lt;!&ndash;<div th:text="${r.getReplyTime()}"></div>&ndash;&gt;-->
+                <!--<br>-->
+            <!--</div>-->
+        <!--</td>-->
+    <!--</tr>-->
 <!--</table>-->
 <!--<form action="/comment/commentQuestion" method="POST">-->
-<!--<table border="1">-->
-<!--<input  type="checkbox"  th:name="questionId" checked = true  th:value="${question.id}"/>-->
-<!--<textarea th:name="comment" th:height="50px" th:width="60px" th:value="在此输入评论"></textarea>-->
-<!--</table>-->
-<!--<button type="submit">提交评论</button>-->
+    <!--<table border="1">-->
+        <!--<input  type="checkbox"  th:name="questionId" checked = true  th:value="${question.id}"/>-->
+        <!--<textarea th:name="comment" th:height="50px" th:width="60px" th:value="在此输入评论"></textarea>-->
+    <!--</table>-->
+    <!--<button type="submit">提交评论</button>-->
 <!--</form>-->
 
 <!--</body>-->
 
 </html>
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-    <!--<meta charset="UTF-8">-->
-    <!--<title>提交答案之后的界面</title>-->
-<!--</head>-->
-<!--<body>-->
-    <!--<div><span th:text="${map0.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map0.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map1.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map1.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map2.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map2.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map3.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map3.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map4.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map4.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map5.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map5.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map6.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map6.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map7.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map7.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map8.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map8.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-    <!--<div><span th:text="${map9.get('judgeAnswer')}"></span><a th:href="@{'getCommentAndAnalysis?id='+${map9.get('questionID')}}">查看答案解析及讨论</a></div><br/>-->
-<!--</body>-->

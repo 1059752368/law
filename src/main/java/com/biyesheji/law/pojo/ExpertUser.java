@@ -13,16 +13,13 @@ import javax.persistence.Id;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "user")
-public class User {
+@Entity(name = "expert_user")
+public class ExpertUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String loginName;
-    private String pwd;
-//    private String realName;
-    private Integer type;
-//    private String email;
-    private String identificationNumber;
-    private String photoId;
+    private String realName;
+    private String phoneNumber;
+    private String certificationInformation;
+    private Integer userId;
 }

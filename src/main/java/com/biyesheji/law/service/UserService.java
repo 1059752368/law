@@ -10,4 +10,7 @@ public interface UserService {
     User addUser(User user);
     User findUserByLoginName(String loginName);
     Map<String, Integer> login(String loginName, String password);
+    User findUserById(int id);
+    User updateUser(User user);
+    List<User> findAllExperts();
 }

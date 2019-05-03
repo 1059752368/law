@@ -54,4 +54,24 @@ public class UserServiceImpl implements UserService {
         return map;
     }
 
+    @Override
+    public User findUserById(int id) {
+        try {
+            return userRepository.findById(id).orElse(null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public List<User> findAllExperts() {
+        List<User> expertsList = userRepository.findAllByType(2);
+        return expertsList;
+    }
 }

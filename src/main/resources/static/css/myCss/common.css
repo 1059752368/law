@@ -1,0 +1,128 @@
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-bottom-color: transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.panel-info{
+    border-color: #bce8f1 !important;
+}
+.panel-body {
+    padding: 15px;
+}
+.analysis{
+    border-radius: 6px;
+    border: 1px solid #d4d4d4;
+    padding: 10px;
+    background: salmon;
+    font-size: 14px;
+}
+.result-answer-item {
+    border-radius: 6px;
+    border: 1px solid #d4d4d4;
+    padding: 10px;
+    background: #fff;
+    font-size: 14px;
+    /*margin-bottom: 20px;*/
+}
+
+/*.comment{*/
+/*margin-top: 10px;*/
+/*}*/
+.module-body {
+    padding: 20px;
+}
+.clearfix {
+    display: block;
+    zoom: 1;
+}
+.answer-list .answer-list-item:last-child {
+    border: none;
+}
+.answer-list div.answer-list-item, .answer-list li.answer-list-item {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+    position: relative;
+    padding-top: 15px;
+}
+.answer-brief {
+    font-size: 14px;
+    line-height: 1.8;
+}
+.nc-post-content {
+    font-size: 14px;
+}
+.comment{
+    background-color: rgba(20,15,20,.1);
+    width: 100%;
+    margin: 10px 0 5px;
+}
+.comment-head-photo{
+    background-color: rgba(200,15,20,.3);
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    float: left;
+    border-radius: 50%;
+    margin: 0 15px;
+}
+.answer-brief{
+    display: inline-block;
+    line-height: 50px;
+}
+.comment-userName{
+    margin: 5px 15px;
+    line-height: 15px;
+}
+.comment-replyTime{
+    font-size: 12px;
+    color: #a599b2;
+    margin: 0 15px;
+    line-height: 15px;
+}
+.comment-line{
+    width: 100%;
+    border-bottom: 1px solid  #4E4E4E ;
+}
+.input-textarea{
+    resize: none;
+    width: 406px;
+}
+.input-textarea:focus{
+    animation: input-textarea .5s forwards;
+}
+@keyframes input-textarea {
+    to {
+        border: 1px solid #5bc0de;
+    }
+}
+
+.list{
+    width:1000px;
+    height:25px;
+    display:inline-block;
+}
+.correct-order{
+    width:25px;
+    height:25px;
+    margin-left:15px;
+    display:inline-block;
+    /*background-color: green;*/
+}
+.error-order{
+    width:25px;
+    height:25px;
+    margin-left:15px;
+    display:inline-block;
+    /*background-color: red;*/
+}
+.set-photo{
+    display:block;
+    height: 300px;
+    width: 300px;
+    margin: 50px auto;
+    padding: 47px 54px;
+    border-radius: 150px;
+}
+

@@ -64,43 +64,74 @@ public class QuestionController {
 
         map0.put("questionID",answer0[0]);
         map0.put("judgeAnswer",a0);
+        map0.put("currentNumber","1");
+
         map1.put("questionID",answer1[0]);
         map1.put("judgeAnswer",a1);
+        map1.put("currentNumber","2");
+
         map2.put("questionID",answer2[0]);
         map2.put("judgeAnswer",a2);
+        map2.put("currentNumber","3");
+
         map3.put("questionID",answer3[0]);
         map3.put("judgeAnswer",a3);
+        map3.put("currentNumber","4");
+
         map4.put("questionID",answer4[0]);
         map4.put("judgeAnswer",a4);
+        map4.put("currentNumber","5");
+
         map5.put("questionID",answer5[0]);
         map5.put("judgeAnswer",a5);
+        map5.put("currentNumber","6");
+
         map6.put("questionID",answer6[0]);
         map6.put("judgeAnswer",a6);
+        map6.put("currentNumber","7");
+
         map7.put("questionID",answer7[0]);
         map7.put("judgeAnswer",a7);
+        map7.put("currentNumber","8");
+
         map8.put("questionID",answer8[0]);
         map8.put("judgeAnswer",a8);
+        map8.put("currentNumber","9");
+
         map9.put("questionID",answer9[0]);
         map9.put("judgeAnswer",a9);
+        map9.put("currentNumber","10");
 
-
-        model.addAttribute("map0",map0);
-        model.addAttribute("map1",map1);
-        model.addAttribute("map2",map2);
-        model.addAttribute("map3",map3);
-        model.addAttribute("map4",map4);
-        model.addAttribute("map5",map5);
-        model.addAttribute("map6",map6);
-        model.addAttribute("map7",map7);
-        model.addAttribute("map8",map8);
-        model.addAttribute("map9",map9);
+        List<HashMap<String,Object>> answerList = new ArrayList<>();
+        answerList.add(map0);
+        answerList.add(map1);
+        answerList.add(map2);
+        answerList.add(map3);
+        answerList.add(map4);
+        answerList.add(map5);
+        answerList.add(map6);
+        answerList.add(map7);
+        answerList.add(map8);
+        answerList.add(map9);
+        model.addAttribute("answerList",answerList);
+//
+//        model.addAttribute("map0",map0);
+//        model.addAttribute("map1",map1);
+//        model.addAttribute("map2",map2);
+//        model.addAttribute("map3",map3);
+//        model.addAttribute("map4",map4);
+//        model.addAttribute("map5",map5);
+//        model.addAttribute("map6",map6);
+//        model.addAttribute("map7",map7);
+//        model.addAttribute("map8",map8);
+//        model.addAttribute("map9",map9);
 
         return "submitAnswers";
     }
 
     private boolean testQuestion(int[] answer){
-        Question question = questionService.findOneQuestion(answer[0]);
-        Answers answers = question.getAnswers();
+        int answerid = questionService.findOneQuestion(answer[0]).getAnswersId();
+        Answers answers = questionService.getAnswerByAnswerId(answerid);
         String rightAnswer = answers.getRightAnswer();
 
         ArrayList<Integer> rightAnswerArray = new ArrayList<>();
@@ -110,11 +141,11 @@ public class QuestionController {
         rightAnswerArray.sort(Integer::compareTo );
         String rightAnswerString= "";
         for(int i =0 ; i<rightAnswerArray.size();i++) {
-            rightAnswerString+=rightAnswerArray.get(i);
+            rightAnswerString += rightAnswerArray.get(i);
         }
         String AnswerString= "";
         for(int i = 1; i<answer.length;i++) {
-            AnswerString+=answer[i];
+            AnswerString += answer[i];
         }
         return rightAnswerString.equals(AnswerString);
     }
@@ -184,5 +215,13 @@ public class QuestionController {
         List<Question> questionList = questionService.getAll();
         model.addAttribute("question", questionList);
         return "question";
+    }
+
+    @GetMapping("/listAllQuestionAndComment")
+    public String listAllQuestionAndComment(Model model){
+        List<Question> questionList = questionService.getAllQuestionAndComment();
+        model.addAttribute("questionList",questionList);
+
+        return "listAllQuestionAndComment2";
     }
 }

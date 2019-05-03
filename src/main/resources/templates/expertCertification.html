@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Expert certification</title>
+</head>
+<body>
+<div th:text="${currentUser.getLoginName()}"></div>
+<div th:text="${currentUser.getIdentificationNumber()}"></div>
+
+<div>
+    <form action="/advisory/addAdvisory">
+        <textarea style="width: 200px" name="realName"></textarea>
+        <textarea style="width: 200px" name="phoneNumber"></textarea>
+        <textarea style="width: 200px" name="certificationInformation"></textarea>
+        <button style="height: 50px" type="submit"></button>
+    </form>
+
+</div>
+</body>
+</html>
