@@ -18,7 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.List;
@@ -71,29 +73,31 @@ public class UserController {
     @PostMapping("/login")
     @ApiOperation(value = "登录",notes = "登录")
     @ResponseBody
-    public ResultVO login(@RequestParam("loginName") String loginName,@RequestParam("password") String password,
-                        Map<String,Object> map, HttpSession session) {
+    public ResultVO login(@RequestParam("loginName") String loginName, @RequestParam("password") String password,
+                          Map<String,Object> map, HttpServletRequest request, HttpServletResponse response) {
         ResultVO resultVO = new ResultVO();
 
         try {
-            Map<String, Integer> login = userService.login(loginName, password);
-            if (login.get("status") == 0) {
+            Map<String, String> login = userService.login(loginName, password);
+            if (login.get("status").equals("0")) {
                 resultVO.setStatus(false);
                 resultVO.setErrorMsg("此用户不存在");
                 map.put("msg","此用户不存在");
 //                return  "question";
             }
-            if (login.get("status") == 1) {
+            if (login.get("status").equals("1")) {
                 resultVO.setStatus(false);
                 resultVO.setErrorMsg("密码错误");
                 map.put("msg","密码错误");
 //                return  "login";
             }
-            if (login.get("status") == 2) {
+            if (login.get("status").equals("2")) {
                 resultVO.addData("userId", login.get("userId"));
                 resultVO.addData("userType", login.get("userType"));
-                session.setAttribute("userId",login.get("userId"));
-                session.setAttribute("userType",login.get("userType"));
+                resultVO.addData("userPhoto", login.get("userPhoto"));
+                request.getSession().setAttribute("userId",login.get("userId"));
+                request.getSession().setAttribute("userType",login.get("userType"));
+//                response.addCookie(new Cookie("userId", "" + login.get("userId")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -290,4 +294,21 @@ public class UserController {
         model.addAttribute("list",list);
         return "connectExperts";
     }
+
+    @PostMapping("/findUserById")
+    @ResponseBody
+    public ResultVO findUserById(@RequestParam("userId") int userId) {
+        ResultVO resultVO = new ResultVO();
+        try {
+            User user = userService.findUserById(userId);
+            resultVO.addData("user", user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            resultVO.setStatus(false);
+            resultVO.setErrorMsg("查找用户失败！");
+        }
+        return resultVO;
+    }
+
+
 }

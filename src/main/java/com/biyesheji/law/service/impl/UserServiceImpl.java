@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> list(){
+    public List<User> list() {
         return userRepository.findAll();
     }
 
@@ -35,22 +35,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Integer> login(String loginName, String password) {
+    public Map<String, String> login(String loginName, String password) {
 
-        Map<String, Integer> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         User userByLoginName = userRepository.findUserByLoginName(loginName);
         if (userByLoginName == null) {
-            map.put("status", 0);
+            map.put("status", "" + 0);
             return map;
         }
         User userByLoginNameAndPwd = userRepository.findUserByLoginNameAndPwd(loginName, password);
         if (userByLoginNameAndPwd == null) {
-            map.put("status", 1);
+            map.put("status", "" + 1);
             return map;
         }
-        map.put("status", 2);
-        map.put("userId", userByLoginNameAndPwd.getId());
-        map.put("userType", userByLoginNameAndPwd.getType());
+        map.put("status", "" + 2);
+        map.put("userId", "" + userByLoginNameAndPwd.getId());
+        map.put("userType", "" + userByLoginNameAndPwd.getType());
+        map.put("userPhoto", userByLoginNameAndPwd.getPhotoId());
         return map;
     }
 
@@ -58,7 +59,7 @@ public class UserServiceImpl implements UserService {
     public User findUserById(int id) {
         try {
             return userRepository.findById(id).orElse(null);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
