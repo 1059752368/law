@@ -103,12 +103,12 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void updateQuestion(Question question) {
+    public void updateQuestion(Question question,Answers answers) {
 //        int questionId = question.getId();
 //        int answerId = question.getAnswersId();
 //        questionRepository.save(question);
         questionRepository.save(question);
-        answersRepository.save(question.getAnswers());
+        answersRepository.save(answers);
     }
 
 }

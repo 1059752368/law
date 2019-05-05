@@ -21,7 +21,7 @@ public class AdvisoryController {
 
     @RequestMapping("/addAdvisory")
     public String addAdvisory( int expertId, String advisory,  HttpServletRequest request){
-        int userId = (int) request.getSession().getAttribute("userId");
+        int userId = Integer.parseInt(request.getSession().getAttribute("userId").toString());
         advisoryService.addAdvisory(userId,expertId,advisory);
         return "redirect:../user/connectExperts"+"?expertId="+expertId;
     }

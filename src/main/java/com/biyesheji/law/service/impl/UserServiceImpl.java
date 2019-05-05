@@ -70,9 +70,5 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    @Override
-    public List<User> findAllExperts() {
-        List<User> expertsList = userRepository.findAllByType(2);
-        return expertsList;
-    }
+
 }

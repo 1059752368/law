@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js h-100" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="no-js h-100" lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -83,9 +83,10 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="user-profile-lite.html">
+
+                <a class="nav-link " href="/admin/expertCertification">
                   <i class="material-icons">person</i>
-                  <span>个人信息</span>
+                  <span>认证信息</span>
                 </a>
               </li>
             </ul>
@@ -112,7 +113,7 @@
                     <span id="loginName" class="d-none d-md-inline-block">Default</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.html">
+                    <a class="dropdown-item" href="/admin/expertCertification">
                       <i class="material-icons">&#xE7FD;</i>个人信息</a>
                     <a class="dropdown-item text-danger" href="#">
                       <i class="material-icons text-danger">&#xE879;</i>退出登录</a>
@@ -138,7 +139,7 @@
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Overview</span>
-                <h3 class="page-title">用户个人信息</h3>
+                <h3 class="page-title">修改问题信息</h3>
               </div>
             </div>
             <!-- End Page Header -->
@@ -146,28 +147,9 @@
             <div class="row">
               <div class="col-lg-4">
                 <div class="card card-small mb-4 pt-3">
-                  <div class="card-header border-bottom text-center">
-                    <div class="mb-3 mx-auto">
-                      <img class="rounded-circle" src="../images/images/avatars/0.jpg" alt="User Avatar" width="110"> </div>
-                    <h4 class="mb-0">Sierra Brooks</h4>
-                    <span class="text-muted d-block mb-2">Project Manager</span>
-                    <button type="button" class="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2">
-                      <i class="material-icons mr-1">person_add</i>Follow</button>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item px-4">
-                      <div class="progress-wrapper">
-                        <strong class="text-muted d-block mb-2">Workload</strong>
-                        <div class="progress progress-sm">
-                          <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100" style="width: 74%;">
-                            <span class="progress-value">74%</span>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
                     <li class="list-group-item p-4">
                       <strong class="text-muted d-block mb-2">Description</strong>
-                      <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</span>
+                      <span>正确答案一栏输入1表示A，12表示AB以此类推，连续数字，每个题目4个答案</span>
                     </li>
                   </ul>
                 </div>
@@ -181,36 +163,36 @@
                     <li class="list-group-item p-3">
                       <div class="row">
                         <div class="col">
-                          <form>
+                          <form th:action="@{'/admin/updateOneQuestion?questionId='+${question.getId()}}" method="post">
                             <div class="form-group">
                               <label>问题内容</label>
-                              <input type="text" class="form-control" id="Content" placeholder="问题内容" th:value="${question.getContent()}"> </div>
+                              <input type="text" class="form-control" th:name="content" placeholder="问题内容" th:value="${question.getContent()}"> </div>
                             <div class="form-row">
                               <div class="form-group col-md-6">
                                 <label>答案A</label>
-                                <input type="text" class="form-control" id="answer1" placeholder="答案A" th:value="${question.getAnswers().getAnswer1()}">
+                                <input type="text" class="form-control" th:name="answer1" placeholder="答案A" th:value="${question.getAnswers().getAnswer1()}">
                               </div>
                                 <div class="form-group col-md-6">
                                 <label>答案B</label>
-                                <input type="text" class="form-control" id="answer2" placeholder="答案B" th:value="${question.getAnswers().getAnswer2()}">
+                                <input type="text" class="form-control" th:name="answer2" placeholder="答案B" th:value="${question.getAnswers().getAnswer2()}">
                                 </div>
                             </div>
                             <div class="form-row">
                               <div class="form-group col-md-6">
                                 <label>答案C</label>
-                                <input type="text" class="form-control" id="answer3" placeholder="答案C" th:value="${question.getAnswers().getAnswer3()}">
+                                <input type="text" class="form-control" th:name="answer3" placeholder="答案C" th:value="${question.getAnswers().getAnswer3()}">
                               </div>
                               <div class="form-group col-md-6">
                                 <label>答案D</label>
-                                <input type="text" class="form-control" id="answer4" placeholder="答案D" th:value="${question.getAnswers().getAnswer4()}">
+                                <input type="text" class="form-control" th:name="answer4" placeholder="答案D" th:value="${question.getAnswers().getAnswer4()}">
                               </div>
                             </div>
                             <div class="form-group">
                               <label>答案解析</label>
-                              <input type="text" class="form-control" id="analysis" placeholder="答案解析" th:value="${question.getAnalysis()}"> </div>
+                              <input type="text" class="form-control" th:name="analysis" placeholder="答案解析" th:value="${question.getAnalysis()}"> </div>
                             <div class="form-group">
                               <label>正确答案</label>
-                              <input type="text" class="form-control" id="rightAnswer" placeholder="正确答案" th:value="${question.getAnswers().getRightAnswer()}"> </div>
+                              <input type="text" class="form-control" th:name="rightAnswer" placeholder="正确答案" th:value="${question.getAnswers().getRightAnswer()}"> </div>
 
                               <!--<div class="form-group col-md-4">-->
                                 <!--<label for="feInputState">用户类型</label>-->

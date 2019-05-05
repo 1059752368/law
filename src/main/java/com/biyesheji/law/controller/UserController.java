@@ -167,7 +167,7 @@ public class UserController {
     @RequestMapping("/setPhoto")
     public String setPhoto(Model model, HttpServletRequest request){
        try {
-           int userId = (int) request.getSession().getAttribute("userId");
+           int userId = Integer.parseInt(request.getSession().getAttribute("userId").toString());
            String photoId = userService.findUserById(userId).getPhotoId();
 
            model.addAttribute("headPhoto",photoId);
@@ -184,7 +184,7 @@ public class UserController {
     public ResultVO upload(@RequestParam("file") MultipartFile postFile,HttpServletRequest request) {
         ResultVO resultVO = new ResultVO();
         try {
-            int userId = (int) request.getSession().getAttribute("userId");
+            int userId = Integer.parseInt(request.getSession().getAttribute("userId").toString());
             User currentUser = userService.findUserById(userId);
 
             //获取原文件名和文件格式
@@ -245,7 +245,7 @@ public class UserController {
 
     @RequestMapping("/expertCertification")
     public String expertCertification(HttpServletRequest request,Model model){
-        int userId = (int) request.getSession().getAttribute("userId");
+        int userId = Integer.parseInt(request.getSession().getAttribute("userId").toString());
         User currentUser = userService.findUserById(userId);
         model.addAttribute("currentUser",currentUser);
 
@@ -254,16 +254,17 @@ public class UserController {
 
     @RequestMapping("/setExpert")
     public String setExpert(HttpServletRequest request,String realName,String phoneNumber,String certificationInformation){
-        int userId = (int) request.getSession().getAttribute("userId");
+        int userId = Integer.parseInt(request.getSession().getAttribute("userId").toString());
         User currentUser = userService.findUserById(userId);
-        currentUser.setType(2);
-        userService.updateUser(currentUser);
+//        currentUser.setType(2);
+//        userService.updateUser(currentUser);
 
         ExpertUser expertUser = new ExpertUser();
         expertUser.setRealName(realName);
         expertUser.setPhoneNumber(phoneNumber);
         expertUser.setUserId(userId);
         expertUser.setCertificationInformation(certificationInformation);
+        expertUser.setStatus(2);
         expertUserService.addExpertUser(expertUser);
 
         return "redirect:expertCertification";
@@ -272,7 +273,7 @@ public class UserController {
     @RequestMapping("/listAllExperts")
     @ResponseBody
     public ResultVO listAllExperts(){
-        List<User> experts = userService.findAllExperts();
+        List<ExpertUser> experts = expertUserService.findAllExperts(1);
         ResultVO resultVO  = new ResultVO();
         resultVO.addData("experts",experts);
         return resultVO;
@@ -280,7 +281,8 @@ public class UserController {
 
     @GetMapping("/connectExperts")
     public String connectExperts(@RequestParam int expertId,HttpServletRequest request,Model model){
-        int userId = (int) request.getSession().getAttribute("userId");
+        int userId = Integer.parseInt(request.getSession().getAttribute("userId").toString());
+//        int userId = Integer.parseInt(request.getSession().getAttribute("userId").toString());
         User currentUser = userService.findUserById(userId);
         ExpertUser expertUser = expertUserService.findOneExpertUser(expertId);
 

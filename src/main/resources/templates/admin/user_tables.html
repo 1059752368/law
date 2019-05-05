@@ -30,9 +30,6 @@
     </script>
   </head>
   <body class="h-100">
-    <div class="color-switcher-toggle animated pulse infinite">
-      <i class="material-icons">settings</i>
-    </div>
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->
@@ -78,11 +75,11 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="user-profile-lite.html">
+
+                <a class="nav-link " href="/admin/expertCertification">
                   <i class="material-icons">person</i>
-                  <span>个人信息</span>
+                  <span>认证信息</span>
                 </a>
-              </li>
               </li>
             </ul>
           </div>
@@ -108,7 +105,7 @@
                     <span id="loginName" class="d-none d-md-inline-block">Default</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.html">
+                    <a class="dropdown-item" href="/admin/expertCertification">
                       <i class="material-icons">&#xE7FD;</i>个人信息</a>
                     <a class="dropdown-item text-danger" href="#">
                       <i class="material-icons text-danger">&#xE879;</i>退出登录</a>
@@ -177,28 +174,28 @@
                           <!--<td>Ali</td>-->
                           <!--<td>Kerry</td>-->
                           <!--<td>Russian Federation</td>-->
-                          <!--<td><a class="dropdown-item" href="user-profile-lite.html">修改</a></td>-->
+                          <!--<td><a class="dropdown-item" href="/admin/expertCertification">修改</a></td>-->
                         <!--</tr>-->
                         <!--<tr>-->
                           <!--<td>2</td>-->
                           <!--<td>Clark</td>-->
                           <!--<td>Angela</td>-->
                           <!--<td>Estonia</td>-->
-                          <!--<td><a class="dropdown-item" href="user-profile-lite.html">修改</a></td>-->
+                          <!--<td><a class="dropdown-item" href="/admin/expertCertification">修改</a></td>-->
                         <!--</tr>-->
                         <!--<tr>-->
                           <!--<td>3</td>-->
                           <!--<td>Jerry</td>-->
                           <!--<td>Nathan</td>-->
                           <!--<td>Cyprus</td>-->
-                          <!--<td><a class="dropdown-item" href="user-profile-lite.html">修改</a></td>-->
+                          <!--<td><a class="dropdown-item" href="/admin/expertCertification">修改</a></td>-->
                         <!--</tr>-->
                         <!--<tr>-->
                           <!--<td>4</td>-->
                           <!--<td>Colt</td>-->
                           <!--<td>Angela</td>-->
                           <!--<td>Liberia</td>-->
-                          <!--<td><a class="dropdown-item" href="user-profile-lite.html">修改</a></td>-->
+                          <!--<td><a class="dropdown-item" href="/admin/expertCertification">修改</a></td>-->
                         <!--</tr>-->
 
                         <!--<input  type="checkbox"  checked = true  style="display: none " th:name="${r.id}"  th:value="${r.id}"/>-->
@@ -209,7 +206,7 @@
                         <!--<input  type="checkbox"  th:name="'answer'"  th:value="${3}"/>-->
                         <!--<span th:text="${r.getIdentificationNumber()}"></span><br/>-->
                         <!--<input  type="checkbox"  th:name="'answer'"  th:value="${4}"/>-->
-                        <!--<span><a class="dropdown-item" href="user-profile-lite.html">修改</a></span>-->
+                        <!--<span><a class="dropdown-item" href="/admin/expertCertification">修改</a></span>-->
                         <!--<br/>-->
 
                         <tr th:each="r:${userList}">

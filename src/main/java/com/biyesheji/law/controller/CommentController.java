@@ -37,7 +37,7 @@ public class CommentController {
     }
     @PostMapping("/commentQuestion")
     public String commentQuestion(String comment, String questionId,HttpServletRequest request){
-        int userId = (int) request.getSession().getAttribute("userId");
+        int userId = Integer.parseInt(request.getSession().getAttribute("userId").toString());
         int question_Id = Integer.parseInt(questionId);
         Comment new_comment = new Comment();
 

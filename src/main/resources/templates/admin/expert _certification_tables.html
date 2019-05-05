@@ -30,9 +30,6 @@
     </script>
   </head>
   <body class="h-100">
-    <div class="color-switcher-toggle animated pulse infinite">
-      <i class="material-icons">settings</i>
-    </div>
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->
@@ -60,7 +57,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/admin/listUser">
+                <a class="nav-link " href="/admin/listUser">
                   <i class="material-icons">table_chart</i>
                   <span>用户信息</span>
                 </a>
@@ -78,11 +75,11 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="user-profile-lite.html">
+
+                <a class="nav-link active" href="/admin/expertCertification">
                   <i class="material-icons">person</i>
-                  <span>个人信息</span>
+                  <span>认证信息</span>
                 </a>
-              </li>
               </li>
             </ul>
           </div>
@@ -108,7 +105,7 @@
                     <span id="loginName" class="d-none d-md-inline-block">Default</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.html">
+                    <a class="dropdown-item" href="/admin/expertCertification">
                       <i class="material-icons">&#xE7FD;</i>个人信息</a>
                     <a class="dropdown-item text-danger" href="#">
                       <i class="material-icons text-danger">&#xE879;</i>退出登录</a>
@@ -165,10 +162,11 @@
                       <thead class="bg-light">
                         <tr>
                           <th scope="col" class="border-0">#</th>
-                          <th scope="col" class="border-0">用户名</th>
-                          <th scope="col" class="border-0">用户类型</th>
-                          <th scope="col" class="border-0">身份证号</th>
-                          <th scope="col" class="border-0">修改用户</th>
+                          <th scope="col" class="border-0">真实姓名</th>
+                          <th scope="col" class="border-0">手机号码</th>
+                          <th scope="col" class="border-0">认证信息</th>
+                          <th scope="col" class="border-0">用户表Id</th>
+                          <th scope="col" class="border-0">操作</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -177,28 +175,28 @@
                           <!--<td>Ali</td>-->
                           <!--<td>Kerry</td>-->
                           <!--<td>Russian Federation</td>-->
-                          <!--<td><a class="dropdown-item" href="user-profile-lite.html">修改</a></td>-->
+                          <!--<td><a class="dropdown-item" href="/admin/expertCertification">修改</a></td>-->
                         <!--</tr>-->
                         <!--<tr>-->
                           <!--<td>2</td>-->
                           <!--<td>Clark</td>-->
                           <!--<td>Angela</td>-->
                           <!--<td>Estonia</td>-->
-                          <!--<td><a class="dropdown-item" href="user-profile-lite.html">修改</a></td>-->
+                          <!--<td><a class="dropdown-item" href="/admin/expertCertification">修改</a></td>-->
                         <!--</tr>-->
                         <!--<tr>-->
                           <!--<td>3</td>-->
                           <!--<td>Jerry</td>-->
                           <!--<td>Nathan</td>-->
                           <!--<td>Cyprus</td>-->
-                          <!--<td><a class="dropdown-item" href="user-profile-lite.html">修改</a></td>-->
+                          <!--<td><a class="dropdown-item" href="/admin/expertCertification">修改</a></td>-->
                         <!--</tr>-->
                         <!--<tr>-->
                           <!--<td>4</td>-->
                           <!--<td>Colt</td>-->
                           <!--<td>Angela</td>-->
                           <!--<td>Liberia</td>-->
-                          <!--<td><a class="dropdown-item" href="user-profile-lite.html">修改</a></td>-->
+                          <!--<td><a class="dropdown-item" href="/admin/expertCertification">修改</a></td>-->
                         <!--</tr>-->
 
                         <!--<input  type="checkbox"  checked = true  style="display: none " th:name="${r.id}"  th:value="${r.id}"/>-->
@@ -209,15 +207,16 @@
                         <!--<input  type="checkbox"  th:name="'answer'"  th:value="${3}"/>-->
                         <!--<span th:text="${r.getIdentificationNumber()}"></span><br/>-->
                         <!--<input  type="checkbox"  th:name="'answer'"  th:value="${4}"/>-->
-                        <!--<span><a class="dropdown-item" href="user-profile-lite.html">修改</a></span>-->
+                        <!--<span><a class="dropdown-item" href="/admin/expertCertification">修改</a></span>-->
                         <!--<br/>-->
 
-                        <tr th:each="r:${userList}">
-                          <td ><span th:text="${r.getId()}"></span></td>
-                          <td ><span th:text="${r.getLoginName()}"></span></td>
-                          <td><span th:text="${r.getType()}"></span></td>
-                          <td><span th:text="${r.getIdentificationNumber()}"></span></td>
-                          <td><a class="dropdown-item" th:href="@{'/admin/listOneUserInfo?userId='+${r.getId()}}">修改</a></td>
+                        <tr th:each="r:${expertUsers}">
+                          <td><span th:text="${r.getId()}"></span></td>
+                          <td><span th:text="${r.getRealName()}"></span></td>
+                          <td><span th:text="${r.getPhoneNumber()}"></span></td>
+                          <td><span th:text="${r.getCertificationInformation()}"></span></td>
+                          <td><span th:text="${r.getUserId()}"></span></td>
+                          <td><a class="dropdown-item" th:href="@{'/admin/setExperts?id='+${r.getId()}}">认证通过</a></td>
 
                         </tr>
                       </tbody>

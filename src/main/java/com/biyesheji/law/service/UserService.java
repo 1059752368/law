@@ -12,5 +12,5 @@ public interface UserService {
     Map<String, String> login(String loginName, String password);
     User findUserById(int id);
     User updateUser(User user);
-    List<User> findAllExperts();
+
 }

@@ -192,30 +192,30 @@ public class QuestionController {
         return resultVO;
     }
 
-    @PostMapping("/updateQuestion")
-    @ApiOperation(value = "修改",notes="修改")
-    public  String updateQuestion(Question question,Answers answers){
-        question.setAnswers(answers);
-        answers.setId(question.getAnswersId());
-        questionService.updateQuestion(question);
-        return "redirect:listQuestions";
-    }
+//    @PostMapping("/updateQuestion")
+//    @ApiOperation(value = "修改",notes="修改")
+//    public  String updateQuestion(Question question,Answers answers){
+//        question.setAnswers(answers);
+//        answers.setId(question.getAnswersId());
+//        questionService.updateQuestion(question);
+//        return "redirect:listQuestions";
+//    }
 
-    @GetMapping("/editOneQuestion")
-    @ApiOperation(value = "编辑一个问题",notes = "编辑一个问题")
-    public String EditOneQuestion(Model model ,@RequestParam("id") int id){
-        Question question = questionService.findOneQuestion(id);
-        model.addAttribute("question",question);
-        return "updateQuestion";
-    }
+//    @GetMapping("/editOneQuestion")
+//    @ApiOperation(value = "编辑一个问题",notes = "编辑一个问题")
+//    public String EditOneQuestion(Model model ,@RequestParam("id") int id){
+//        Question question = questionService.findOneQuestion(id);
+//        model.addAttribute("question",question);
+//        return "updateQuestion";
+//    }
 
-    @GetMapping("/listQuestions")
-    @ApiOperation(value = "随机问题1", notes = "随机10问题")
-    public String listQuestions(Model model){
-        List<Question> questionList = questionService.getAll();
-        model.addAttribute("question", questionList);
-        return "question";
-    }
+//    @GetMapping("/listQuestions")
+//    @ApiOperation(value = "随机问题1", notes = "随机10问题")
+//    public String listQuestions(Model model){
+//        List<Question> questionList = questionService.getAll();
+//        model.addAttribute("question", questionList);
+//        return "question";
+//    }
 
     @GetMapping("/listAllQuestionAndComment")
     public String listAllQuestionAndComment(Model model){

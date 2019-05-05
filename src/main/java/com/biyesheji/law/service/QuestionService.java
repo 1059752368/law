@@ -15,5 +15,5 @@ public interface QuestionService {
     Answers getAnswerByAnswerId(int answerId);
     void addQuestion(Question question, Answers answer);//增加问题以及答案
     void delete(int questionId);//删除
-    void updateQuestion(Question question);//修改
+    void updateQuestion(Question question,Answers answers);//修改
 }

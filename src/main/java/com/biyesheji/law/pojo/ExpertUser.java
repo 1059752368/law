@@ -22,4 +22,5 @@ public class ExpertUser {
     private String phoneNumber;
     private String certificationInformation;
     private Integer userId;
+    private Integer status;
 }

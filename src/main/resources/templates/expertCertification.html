@@ -1,21 +1,202 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Expert certification</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn is a modern and fully responsive Template by WebThemez.">
+    <meta name="author" content="">
+    <title>Learn</title>
+    <link rel="favicon" href="../images/favicon.png">
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <!-- Custom styles for our template -->
+    <link rel="stylesheet" href="../css/bootstrap-theme.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../css/da-slider.css" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/myCss/common.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../js/html5shiv.js"></script>
+    <script src="../js/respond.min.js"></script>
+    <![endif]-->
+    <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+    <script src="../js/modernizr-latest.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+    <!--<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.cslider.js"></script>
+    <script src="../js/custom.js"></script>
 </head>
 <body>
-<div th:text="${currentUser.getLoginName()}"></div>
-<div th:text="${currentUser.getIdentificationNumber()}"></div>
 
-<div>
-    <form action="/advisory/addAdvisory">
-        <textarea style="width: 200px" name="realName"></textarea>
-        <textarea style="width: 200px" name="phoneNumber"></textarea>
-        <textarea style="width: 200px" name="certificationInformation"></textarea>
-        <button style="height: 50px" type="submit"></button>
-    </form>
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Button for smallest screens -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            <a class="navbar-brand" href="../index.html">
+                <img src="../images/logo.png" alt="Techro HTML5 template"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav pull-right mainNav">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../courses.html">Courses</a></li>
+                <li><a href="../expertAdvice.html">Expert Advice</a></li>
+                <li><a href="../portfolio.html">Portfolio</a></li>
+                <li class="dropdown" style="z-index: 9999">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+                    <ul class="dropdown-menu" >
+                        <li><a href="sidebar-right.html">示例页（测试用）</a></li>
+                        <li><a href="/user/setPhoto">修改头像</a></li>
+                        <li><a href="/user/expertCertification">专家认证</a></li>
+                        <!--<li><a href="#">Dummy Link3</a></li>-->
+                    </ul>
+                </li>
+                <li><a href="../contact.html">Contact</a></li>
 
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
 </div>
+<header id="head" class="secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1>head photo</h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="container"   id="table" >
+    <div class="col-lg-8">
+        <div class="card card-small mb-4">
+            <div class="card-header border-bottom">
+                <h6 class="m-0">账户信息</h6>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item p-3">
+                    <div class="row">
+                        <div class="col">
+                            <form action="/user/setExpert" method="post">
+
+                               <div class="form-group col-md-6">
+                                   <label>登录名</label>
+                                   <input type="text" class="form-control" th:name="LoginName" placeholder="登录名" th:value="${currentUser.getLoginName()}">
+                               </div>
+
+                                <div class="form-group">
+                                    <label>身份证号码</label>
+                                    <input type="text" class="form-control" th:name="IdentificationNumber" placeholder="身份证号码" th:value="${currentUser.getIdentificationNumber()}">
+                                </div>
+
+                                <div class="form-group">
+                                <label>真实姓名</label>
+                                <input type="text" class="form-control" th:name="realName" placeholder="真实姓名">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>电话号码</label>
+                                    <input type="text" class="form-control" th:name="phoneNumber" placeholder="电话号码">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>认证信息</label>
+                                    <input type="text" class="form-control" th:name="certificationInformation" placeholder="认证信息">
+                                </div>
+                                <button type="submit" class="btn btn-accent">上传认证信息</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!--</div>-->
+    <!--<div th:text="${currentUser.getLoginName()}"></br></div>-->
+    <!--<div th:text="${currentUser.getIdentificationNumber()}"><</br></div>-->
+
+    <!--<div>-->
+        <!--<form action="/advisory/addAdvisory">-->
+            <!--<textarea style="width: 200px" name="realName"></textarea></br>-->
+            <!--<textarea style="width: 200px" name="phoneNumber"></textarea></br>-->
+            <!--<textarea style="width: 200px" name="certificationInformation"></textarea></br>-->
+            <!--<button style="height: 50px" type="submit"></button>-->
+        <!--</form>-->
+
+    <!--</div>-->
+</section>
+
+<footer id="footer">
+    <div class="container">
+        <div class="social text-center">
+            <!--<a href="#"><i class="fa fa-twitter"></i></a>-->
+            <!--<a href="#"><i class="fa fa-facebook"></i></a>-->
+            <!--<a href="#"><i class="fa fa-dribbble"></i></a>-->
+            <!--<a href="#"><i class="fa fa-flickr"></i></a>-->
+            <a href="https://github.com/1059752368/law"><i class="fa fa-github"></i></a>
+        </div>
+
+        <div class="clear"></div>
+        <!--CLEAR FLOATS-->
+    </div>
+    <div class="footer2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 panel">
+                    <div class="panel-body">
+                        <p class="simplenav">
+                            <a href="../index.html">Home</a> |
+                            <a href="../about.html">About</a> |
+                            <a href="../courses.html">Courses</a> |
+                            <a href="../expertAdvice.html">Expert Advice</a> |
+                            <a href="../portfolio.html">Portfolio</a> |
+                            <a href="../contact.html">Contact</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 panel">
+                    <div class="panel-body">
+                        <p class="text-right">
+                            Copyright &copy; 2019.Gonghongtao All rights reserved
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /row of panels -->
+        </div>
+    </div>
+</footer>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--<title>文件上传</title>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<img class="img-responsive" th:src="${headPhoto}" alt="">-->
+<!--</div>-->
+<!--<form action="/user/uploadHeadPhoto" enctype="multipart/form-data" method="post">-->
+<!--上传用户 ：<input type="text" name="username"><br/>-->
+<!--上传文件1：<input type="file" name="file"><br/>-->
+<!--<input type="submit" value="提交">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+
+

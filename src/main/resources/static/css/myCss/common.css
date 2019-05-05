@@ -24,6 +24,7 @@
     padding: 10px;
     background: #fff;
     font-size: 14px;
+    cursor: pointer;
     /*margin-bottom: 20px;*/
 }
 
@@ -125,4 +126,14 @@
     padding: 47px 54px;
     border-radius: 150px;
 }
-
+.news-box{
+    width: 1170px;
+    margin: 0 auto;
+}
+.panel-body input{
+    display: none;
+}
+.news-box button{
+    margin: 15px auto;
+    display: block;
+}
