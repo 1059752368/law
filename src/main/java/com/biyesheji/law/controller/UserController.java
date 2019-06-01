@@ -116,8 +116,8 @@ public class UserController {
         try {
             if (userService.findUserByLoginName(user.getLoginName()) == null) {
                 //默认为学生身份
-                user.setPhotoId("/upload/head.jpg");
-                user.setType(2);
+                user.setPhotoId("http://user-photo-image.oss-cn-beijing.aliyuncs.com/10.jpg?x-oss-process=image/resize,w_300");
+                user.setType(1);
                 userService.addUser(user);
                 return resultVO;
             } else {

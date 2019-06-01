@@ -11,4 +11,6 @@ public interface ExpertUserService {
     List<ExpertUser> findAllExperts(int status);
     List<ExpertUser> findAllCertificationUser(int status);
     int setExperts(int id);
+
+//    List<User> aboutMe(int expertId);
 }

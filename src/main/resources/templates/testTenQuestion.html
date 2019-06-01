@@ -134,13 +134,13 @@
         <div class="panel-heading" th:text="${i+1}+${questionAndAnswer[i].content}"></div>
         <div class="panel-body">
             <input  type="checkbox"  checked = true th:name="'answer'+${i}"  th:value="${questionAndAnswer[i].id}"/>
-            <input  type="checkbox answer" th:name="'answer'+${i}"  th:value="${1}"/>
+            <input  type="checkbox" th:name="'answer'+${i}"  th:value="${1}"/>
             <div class="result-answer-item" th:text="'A.'+${questionAndAnswer[i].getAnswers().getAnswer1()}"></div><br/>
-            <input  type="checkbox answer" th:name="'answer'+${i}"  th:value="${2}"/>
+            <input  type="checkbox" th:name="'answer'+${i}"  th:value="${2}"/>
             <div class="result-answer-item" th:text="'B.'+${questionAndAnswer[i].getAnswers().getAnswer2()}"></div><br/>
-            <input  type="checkbox answer"  th:name="'answer'+${i}"  th:value="${3}"/>
+            <input  type="checkbox"  th:name="'answer'+${i}" th:value="${3}"/>
             <div class="result-answer-item" th:text="'C.'+${questionAndAnswer[i].getAnswers().getAnswer3()}"></div><br/>
-            <input  type="checkbox answers" th:name="'answer'+${i}"  th:value="${4}"/>
+            <input  type="checkbox" th:name="'answer'+${i}" th:value="${4}"/>
             <div class="result-answer-item" th:text="'D.'+${questionAndAnswer[i].getAnswers().getAnswer4()}"></div><br/>
         </div>
     </div>
